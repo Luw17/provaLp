@@ -6,9 +6,9 @@ const { Gym } = require('./src/gym/gym.entity');
 const { Style } = require('./src/style/style.entity');
 
 app.use(cors({
-    origin: 'https://prova-lp.vercel.app/', // Permite o frontend
-    methods: 'GET,POST,PUT,DELETE', // Métodos permitidos
-    allowedHeaders: 'Content-Type,Authorization', // Cabeçalhos permitidos
+    origin: 'https://prova-lp-gbqm.vercel.app', // Permite requisições do frontend
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos permitidos
+    allowedHeaders: ['Content-Type', 'Authorization'], // Cabeçalhos permitidos
 }));
 const port = 3000;
 app.use(express.json());
