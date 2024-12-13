@@ -3,7 +3,7 @@ class Gym{
         this.id = 0
         this.nome = ''
         this.telefone = ''
-        this.bodyBuilders = [] // associação aos bodybuilders
+       // this.bodyBuilders = [] // associação aos bodybuilders
         
     }
 }

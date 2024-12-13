@@ -9,8 +9,8 @@ app.use(cors());
 const port = 3000;
 app.use(express.json());
 var clientes = []; 
-var academias = [{id: 0,nome: 'academia 1',telefone:'1222222222',bodyBuilders:[]},{id: 1,nome: 'academia 2',telefone:'2222222222',bodyBuilders:[]},{id: 2,nome: 'academia 3',telefone:'3222222222',bodyBuilders:[]}]
-var styles = [{id:0,nome:'estilo 1',bodyBuilders:[]}]
+var academias = [{id: 0,nome: 'academia 1',telefone:'1222222222'},{id: 1,nome: 'academia 2',telefone:'2222222222'},{id: 2,nome: 'academia 3',telefone:'3222222222'}]
+var styles = []
 app.post('/body-builder', (req, res) => {
     const data = req.body
     let gym = academias.find(academia=>academia.id == data.idgym)
@@ -119,13 +119,13 @@ app.get('/body-builder/b/:texto',(req,res)=>{
             console.log(retorno);
             res.json(retorno);
         } else {
-            throw new Error('cliente não encontrado');
+            res.send('cliente nao encontrado');
         }
     })
 app.post('/gym',(req,res)=>{
     const data = req.body
     let gym = new Gym()
-    if(!academias)
+    if(!academias  || academias.length == 0)
     {
         gym.id = 0
     }
@@ -147,7 +147,7 @@ app.get('/style',(req,res)=>{
 app.post('/style',(req,res)=>{
     const data = req.body
     let style = new Style()
-    if(!styles)
+    if(!styles || styles.length == 0)
     {
         style.id = 0
     }

@@ -1,11 +1,16 @@
 let alt = false
 function adicionar(modal)
 {
-    getEl('cpf').readOnly = false
+    
     limparform()
     toggleModal('block',modal)
+    if(modal == 'bodybuilder')
+    {
     carregarAcademias()
-    carregarEstilos()
+    carregarEstilos()  
+    getEl('cpf').readOnly = false
+    }
+    
     
 }
 
@@ -213,7 +218,7 @@ function pesquisar()
         console.log(data)
         carregarLista(data)
     }).catch((error) => {
-        alert('erro ao listar')
+        alert('cliente não encontrado')
     })
 }
 function carregarAcademias()
@@ -227,6 +232,12 @@ function carregarAcademias()
         },
         mode:'cors'
     }).then((response)=> response.json()).then((data)=>{
+        if(data.length == 0)
+        {
+            alert('nenhuma academia cadastrada')
+            toggleModal('none','bodybuilder')
+            return
+        }
         data.forEach(element => {
             const option = document.createElement('option');  // Cria um novo elemento option
             option.value = element.id;  // Define o valor da opção
@@ -248,6 +259,12 @@ function carregarEstilos()
         },
         mode:'cors'
     }).then((response)=> response.json()).then((data)=>{
+        if(data.length == 0)
+        {
+            alert('nenhum estilo cadastrado')
+            toggleModal('none','bodybuilder')
+            return
+        }
         data.forEach(element => {
             const option = document.createElement('option');  // Cria um novo elemento option
             option.value = element.id;  // Define o valor da opção
@@ -274,7 +291,6 @@ function sendAcademia(){
         body: JSON.stringify(academia)
     }).then((response) =>  {
         alert('academia criada com sucesso')
-        carregarAcademias()
     }).catch((error) => {
         alert('erro ao cadastrar academia ' + error)
     })
@@ -293,7 +309,6 @@ function sendEstilo(){
         },
         body: JSON.stringify(estilo)
     }).then((response) => {
-        carregarEstilos()
         alert('estilo criado com sucesso')
     }).catch((error) => {
         alert('erro ao cadastrar estilo ' + error)

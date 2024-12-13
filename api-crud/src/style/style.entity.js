@@ -2,7 +2,7 @@ class Style{
     constructor(id,nome){
         this.id = id
         this.nome = nome
-        this.bodyBuilders = []
+       // this.bodyBuilders = []
     }
 }
 module.exports = {Style} 
