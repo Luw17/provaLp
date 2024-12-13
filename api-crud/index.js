@@ -6,7 +6,7 @@ const { Gym } = require('./src/gym/gym.entity');
 const { Style } = require('./src/style/style.entity');
 
 app.use(cors({
-    origin: 'https://prova-lp-gbqm-git-vercel-luw17s-projects.vercel.app', // Permite o frontend
+    origin: 'https://prova-lp.vercel.app/', // Permite o frontend
     methods: 'GET,POST,PUT,DELETE', // Métodos permitidos
     allowedHeaders: 'Content-Type,Authorization', // Cabeçalhos permitidos
 }));
