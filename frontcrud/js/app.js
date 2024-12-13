@@ -1,7 +1,6 @@
 let alt = false
 function adicionar(modal)
 {
-    
     limparform()
     toggleModal('block',modal)
     if(modal == 'bodybuilder')
@@ -11,12 +10,11 @@ function adicionar(modal)
     getEl('cpf').readOnly = false
     }
     
-    
 }
 
 function alterar(cpf)
 {
-    fetch('https://prova-lp.vercel.app/body-builder/buscar/'+cpf,{
+    fetch('http://localhost:3000/body-builder/buscar/'+cpf,{
             method: 'GET',
             headers: {
                 'Content-type': 'application/json'
@@ -46,7 +44,7 @@ function alterar(cpf)
 
 function excluir(cpf)
 {
-    fetch('https://prova-lp.vercel.app/body-builder/'+cpf ,{
+    fetch('http://localhost:3000/body-builder/'+cpf ,{
         method: 'DELETE',
         headers: {
             'Content-type': 'application/json'
@@ -90,12 +88,11 @@ function send()
     console.log(pessoaAdd)
     if(alt)
     {
-        fetch('https://prova-lp.vercel.app/body-builder/'+cpf ,{
+        fetch('http://localhost:3000/body-builder/'+cpf ,{
             method: 'PUT',
             headers: {
                 'Content-type': 'application/json'
             },
-            mode: 'cors',
             body: JSON.stringify(pessoaAdd)
         }).then(() => {
             alert('atualizado com sucesso')
@@ -107,7 +104,7 @@ function send()
         //pessoas[buscar(pessoaAdd.cpf)] = pessoaAdd
     }
     else{
-        fetch('https://prova-lp.vercel.app/body-builder',{
+        fetch('http://localhost:3000/body-builder',{
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'
@@ -155,7 +152,7 @@ function limparform()
 
 function carregarClientes()
 {
-    fetch('https://prova-lp.vercel.app/body-builder',{
+    fetch('http://localhost:3000/body-builder',{
             method: 'GET',
             headers: {
                 'Content-type': 'application/json'
@@ -209,7 +206,7 @@ function pesquisar()
         carregarClientes()
         return
     }
-    fetch('https://prova-lp.vercel.app/body-builder/b/'+texto,{
+    fetch('http://localhost:3000/body-builder/b/'+texto,{
         method: 'GET',
         headers: {
             'Content-type': 'application/json'
@@ -219,14 +216,14 @@ function pesquisar()
         console.log(data)
         carregarLista(data)
     }).catch((error) => {
-        alert('cliente não encontrado')
+        alert('erro ao listar')
     })
 }
 function carregarAcademias()
 {
     const academias = getEl('academias');
     academias.innerHTML = ''; 
-    fetch('https://prova-lp.vercel.app/gym',{
+    fetch('http://localhost:3000/gym',{
         method: 'GET',
         headers:{
             'Content-type':'application/json'
@@ -234,11 +231,11 @@ function carregarAcademias()
         mode:'cors'
     }).then((response)=> response.json()).then((data)=>{
         if(data.length == 0)
-        {
-            alert('nenhuma academia cadastrada')
-            toggleModal('none','bodybuilder')
-            return
-        }
+            {
+                alert('nenhuma academia cadastrada')
+                toggleModal('none','bodybuilder')
+                return
+            }
         data.forEach(element => {
             const option = document.createElement('option');  // Cria um novo elemento option
             option.value = element.id;  // Define o valor da opção
@@ -253,7 +250,7 @@ function carregarEstilos()
 {
     const styles = getEl('estilos');
     styles.innerHTML = ''; 
-    fetch('https://prova-lp.vercel.app/style',{
+    fetch('http://localhost:3000/style',{
         method: 'GET',
         headers:{
             'Content-type':'application/json'
@@ -261,11 +258,11 @@ function carregarEstilos()
         mode:'cors'
     }).then((response)=> response.json()).then((data)=>{
         if(data.length == 0)
-        {
-            alert('nenhum estilo cadastrado')
-            toggleModal('none','bodybuilder')
-            return
-        }
+            {
+                alert('nenhum estilo cadastrado')
+                toggleModal('none','bodybuilder')
+                return
+            }
         data.forEach(element => {
             const option = document.createElement('option');  // Cria um novo elemento option
             option.value = element.id;  // Define o valor da opção
@@ -284,15 +281,15 @@ function sendAcademia(){
         telefone:telefone
     }
     console.log(academia)
-    fetch('https://prova-lp.vercel.app/gym',{
+    fetch('http://localhost:3000/gym',{
         method: 'POST',
         headers: {
             'Content-type': 'application/json'
         },
-        mode: 'cors',
         body: JSON.stringify(academia)
     }).then((response) =>  {
         alert('academia criada com sucesso')
+        carregarAcademias()
     }).catch((error) => {
         alert('erro ao cadastrar academia ' + error)
     })
@@ -304,14 +301,14 @@ function sendEstilo(){
     let estilo = {
         nome:nome
     }
-    fetch('https://prova-lp.vercel.app/style',{
+    fetch('http://localhost:3000/style',{
         method: 'POST',
         headers: {
             'Content-type': 'application/json'
         },
-        mode: 'cors',
         body: JSON.stringify(estilo)
     }).then((response) => {
+        carregarEstilos()
         alert('estilo criado com sucesso')
     }).catch((error) => {
         alert('erro ao cadastrar estilo ' + error)
