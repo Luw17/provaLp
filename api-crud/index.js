@@ -4,8 +4,14 @@ const cors = require('cors');
 const { BodyBuilder } = require('./src/bodybuilder/bodybuilder.entity');
 const { Gym } = require('./src/gym/gym.entity');
 const { Style } = require('./src/style/style.entity');
-
-app.use(cors());
+const corsOptions = {
+    origin: 'https://prova-lp.vercel.app', // Substitua pelo domínio que você quer permitir
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
+  };
+  
+  app.use(cors(corsOptions));
 const port = 3000;
 app.use(express.json());
 var clientes = []; 
