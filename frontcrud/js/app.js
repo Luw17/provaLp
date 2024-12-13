@@ -16,7 +16,7 @@ function adicionar(modal)
 
 function alterar(cpf)
 {
-    fetch('http://localhost:3000/body-builder/buscar/'+cpf,{
+    fetch('prova-lp.vercel.app/body-builder/buscar/'+cpf,{
             method: 'GET',
             headers: {
                 'Content-type': 'application/json'
@@ -46,7 +46,7 @@ function alterar(cpf)
 
 function excluir(cpf)
 {
-    fetch('http://localhost:3000/body-builder/'+cpf ,{
+    fetch('prova-lp.vercel.app/body-builder/'+cpf ,{
         method: 'DELETE',
         headers: {
             'Content-type': 'application/json'
@@ -90,7 +90,7 @@ function send()
     console.log(pessoaAdd)
     if(alt)
     {
-        fetch('http://localhost:3000/body-builder/'+cpf ,{
+        fetch('prova-lp.vercel.app/body-builder/'+cpf ,{
             method: 'PUT',
             headers: {
                 'Content-type': 'application/json'
@@ -107,7 +107,7 @@ function send()
         //pessoas[buscar(pessoaAdd.cpf)] = pessoaAdd
     }
     else{
-        fetch('http://localhost:3000/body-builder',{
+        fetch('prova-lp.vercel.app/body-builder',{
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'
@@ -155,7 +155,7 @@ function limparform()
 
 function carregarClientes()
 {
-    fetch('http://localhost:3000/body-builder',{
+    fetch('prova-lp.vercel.app/body-builder',{
             method: 'GET',
             headers: {
                 'Content-type': 'application/json'
@@ -209,7 +209,7 @@ function pesquisar()
         carregarClientes()
         return
     }
-    fetch('http://localhost:3000/body-builder/b/'+texto,{
+    fetch('prova-lp.vercel.app/body-builder/b/'+texto,{
         method: 'GET',
         headers: {
             'Content-type': 'application/json'
@@ -226,7 +226,7 @@ function carregarAcademias()
 {
     const academias = getEl('academias');
     academias.innerHTML = ''; 
-    fetch('http://localhost:3000/gym',{
+    fetch('prova-lp.vercel.app/gym',{
         method: 'GET',
         headers:{
             'Content-type':'application/json'
@@ -253,7 +253,7 @@ function carregarEstilos()
 {
     const styles = getEl('estilos');
     styles.innerHTML = ''; 
-    fetch('http://localhost:3000/style',{
+    fetch('prova-lp.vercel.app/style',{
         method: 'GET',
         headers:{
             'Content-type':'application/json'
@@ -284,7 +284,7 @@ function sendAcademia(){
         telefone:telefone
     }
     console.log(academia)
-    fetch('http://localhost:3000/gym',{
+    fetch('prova-lp.vercel.app/gym',{
         method: 'POST',
         headers: {
             'Content-type': 'application/json'
@@ -304,7 +304,7 @@ function sendEstilo(){
     let estilo = {
         nome:nome
     }
-    fetch('http://localhost:3000/style',{
+    fetch('prova-lp.vercel.app/style',{
         method: 'POST',
         headers: {
             'Content-type': 'application/json'
