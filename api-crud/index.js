@@ -5,11 +5,7 @@ const { BodyBuilder } = require('./src/bodybuilder/bodybuilder.entity');
 const { Gym } = require('./src/gym/gym.entity');
 const { Style } = require('./src/style/style.entity');
 
-app.use(cors({
-    origin: 'https://prova-lp-gbqm.vercel.app', // Permite requisições do frontend
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos permitidos
-    allowedHeaders: ['Content-Type', 'Authorization'], // Cabeçalhos permitidos
-}));
+app.use(cors());
 const port = 3000;
 app.use(express.json());
 var clientes = []; 
