@@ -95,6 +95,7 @@ function send()
             headers: {
                 'Content-type': 'application/json'
             },
+            mode: 'cors'
             body: JSON.stringify(pessoaAdd)
         }).then(() => {
             alert('atualizado com sucesso')
@@ -288,6 +289,7 @@ function sendAcademia(){
         headers: {
             'Content-type': 'application/json'
         },
+        mode: 'cors'
         body: JSON.stringify(academia)
     }).then((response) =>  {
         alert('academia criada com sucesso')
@@ -307,6 +309,7 @@ function sendEstilo(){
         headers: {
             'Content-type': 'application/json'
         },
+        mode: 'cors'
         body: JSON.stringify(estilo)
     }).then((response) => {
         alert('estilo criado com sucesso')
